@@ -1,28 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react"; // Importar React con useEffect y useState
 
-
-
+//Exportando la funcion del componente
 export const Todolist = () =>{
     const [ user, setUser] = useState ('Mike')
     const [ task, setTask] = useState("");
     const [ list, setList ] = useState([]);
-
     const baseUrl = 'https://playground.4geeks.com/apis/fake/todos';
 
     const createUser = async () =>{
         const url = baseUrl + '/user/' + user;
         const options = {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify([])
         };
         const response = await fetch(url, options);
         if (response.ok){
             const data = await response.json();
             console.log(data);
-
         } else {
             return ('Error: ', response.status, response.statusText)
         }
@@ -38,7 +33,6 @@ export const Todolist = () =>{
             const data = await response.json();
             console.log(data);
             setList(data)
-
         } else {
             return ('Error: ', response.status, response.statusText)
         }
@@ -48,17 +42,13 @@ export const Todolist = () =>{
         const url = baseUrl + '/user/' + user;
         const options = {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify([...list, newTask])
         };
         const response = await fetch(url, options);
         if (response.ok){
             const data = await response.json();
             console.log(data);
-            
-
         } else {
             return ('Error: ', response.status, response.statusText)
         }
@@ -85,7 +75,6 @@ export const Todolist = () =>{
             const data = await response.json();
             console.log(data);
             setList([])
-
         } else {
             return ('Error: ', response.status, response.statusText)
         }
@@ -104,17 +93,13 @@ export const Todolist = () =>{
         const url = baseUrl + '/user/' + user;
         const options = {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(listWithoutDelete)
         };
         const response = await fetch(url, options);
         if (response.ok){
             const data = await response.json();
             console.log(data);
-            
-
         } else {
             return ('Error: ', response.status, response.statusText)
         }
